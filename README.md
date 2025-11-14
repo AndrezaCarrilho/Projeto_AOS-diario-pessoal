@@ -1,6 +1,6 @@
 # 📓 API de Diário Pessoal - Projeto Back-end
 
-Este projeto é um back-end completo para um sistema de diário pessoal, desenvolvido em **Express** com banco de dados **PostgreSQL**. Ele foi criado como parte da disciplina de [Nome da Disciplina] da [Nome da Universidade/Instituição].
+Este projeto é um back-end completo para um sistema de diário pessoal, desenvolvido em **Express** com banco de dados **PostgreSQL**. Ele foi criado como parte da disciplina de Aplicações Orientadas a Serviço da UNICAP.
 
 O sistema permite que usuários se cadastrem e façam login para criar e gerenciar seus cadernos e entradas de diário. O foco principal do projeto é a **privacidade e segurança**, garantindo que um usuário **jamais** possa acessar, ver, editar ou deletar dados que pertençam a outro usuário.
 
