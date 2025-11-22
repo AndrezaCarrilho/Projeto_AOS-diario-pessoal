@@ -1,0 +1,331 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-1234-56789abcdef0",
+		"name": "Projeto Diário Pessoal (Completo)",
+		"description": "Coleção completa para o projeto de Diário Pessoal.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Autenticação",
+			"item": [
+				{
+					"name": "Cadastrar Usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Andreza\",\n  \"email\": \"andreza@teste.com\",\n  \"senha\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/auth/signup",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login (Salva Token Auto)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"token\", jsonData.token);",
+									"console.log(\"Token salvo automaticamente!\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"andreza@teste.com\",\n  \"senha\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/auth/login",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Humores",
+			"item": [
+				{
+					"name": "Criar Humor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Feliz\",\n  \"emoji\": \"😊\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/humores",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"humores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Humores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/humores",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"humores"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Cadernos",
+			"item": [
+				{
+					"name": "Criar Caderno",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Meu Diário de Viagem\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/cadernos",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"cadernos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Cadernos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/cadernos",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"cadernos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver Entradas do Caderno (Relacionamento)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/cadernos/:id/entradas",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"cadernos",
+								":id",
+								"entradas"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "COLE_O_ID_DO_CADERNO_AQUI",
+									"description": "ID do caderno que você quer ver"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4. Entradas (Diário)",
+			"item": [
+				{
+					"name": "Criar Entrada",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Hoje foi um dia bom\",\n  \"conteudo\": \"Aprendi muito sobre Node.js e Postman...\",\n  \"cadernoId\": \"COLE_O_ID_DO_CADERNO_AQUI\",\n  \"humorId\": \"COLE_O_ID_DO_HUMOR_AQUI\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/entradas",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"entradas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Minhas Entradas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/entradas",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"entradas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Entrada",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Editado: Hoje foi INCRÍVEL\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/entradas/:id",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"entradas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "COLE_O_ID_DA_ENTRADA_AQUI"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Entrada",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/entradas/:id",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"entradas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "COLE_O_ID_DA_ENTRADA_AQUI"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "url_base",
+			"value": "https://projeto-aos-diario-pessoal.vercel.app/",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

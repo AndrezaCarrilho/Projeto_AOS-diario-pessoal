@@ -1,15 +1,71 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// prisma/schema.prisma
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+  engineType    = "library"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+// --- AS TABELAS QUE FALTAVAM ---
+
+// 1. Entidade Usuario (para login)
+model Usuario {
+  id       String     @id @default(uuid())
+  nome     String
+  email    String     @unique
+  senha    String // Hash da senha
+  criadoEm DateTime   @default(now())
+  
+  cadernos Caderno[]
+  entradas Entrada[]
+
+  @@map("usuarios")
+}
+
+// 2. Entidade Caderno (para organizar)
+model Caderno {
+  id       String    @id @default(uuid())
+  titulo   String
+  
+  usuarioId String
+  usuario   Usuario   @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  
+  entradas  Entrada[]
+
+  @@map("cadernos")
+}
+
+// 3. Entidade Entrada (o diário)
+model Entrada {
+  id        String    @id @default(uuid())
+  titulo    String
+  conteudo  String    @db.Text
+  data      DateTime  @default(now())
+  
+  usuarioId String
+  usuario   Usuario   @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  
+  cadernoId String
+  caderno   Caderno   @relation(fields: [cadernoId], references: [id], onDelete: Cascade)
+  
+  humorId   String
+  humor     Humor     @relation(fields: [humorId], references: [id])
+
+  @@map("entradas")
+}
+
+// 4. Entidade Humor (tabela de consulta)
+model Humor {
+  id    String    @id @default(uuid())
+  nome  String    @unique 
+  emoji String?   
+  
+  entradas Entrada[]
+
+  @@map("humores")
 }
