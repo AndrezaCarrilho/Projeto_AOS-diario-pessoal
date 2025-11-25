@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "a1b2c3d4-e5f6-7890-1234-56789abcdef0",
-		"name": "Projeto Diário Pessoal (Completo)",
-		"description": "Coleção completa para o projeto de Diário Pessoal.",
+		"_postman_id": "projeto-final",
+		"name": "Projeto Diário Pessoal (Entrega Final)",
+		"description": "Coleção padrão para entrega, pronta para receber novos IDs.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -75,11 +75,162 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/auth/logout",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "2. Humores",
+			"name": "2. Cadernos",
+			"item": [
+				{
+					"name": "Criar Caderno",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Novo Caderno\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/cadernos",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"cadernos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Meus Cadernos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/cadernos",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"cadernos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Caderno",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Caderno Editado\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/cadernos/:id",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"cadernos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "COLE_O_ID_AQUI",
+									"description": "ID do caderno"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver Entradas do Caderno",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/cadernos/:id/entradas",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"cadernos",
+								":id",
+								"entradas"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "COLE_O_ID_AQUI",
+									"description": "ID do caderno"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Caderno",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/cadernos/:id",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"cadernos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "COLE_O_ID_AQUI",
+									"description": "ID do caderno"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Humores",
 			"item": [
 				{
 					"name": "Criar Humor",
@@ -123,20 +274,15 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "3. Cadernos",
-			"item": [
+				},
 				{
-					"name": "Criar Caderno",
+					"name": "Editar Humor",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"titulo\": \"Meu Diário de Viagem\"\n}",
+							"raw": "{\n  \"nome\": \"Muito Feliz\",\n  \"emoji\": \"😁\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -144,54 +290,42 @@
 							}
 						},
 						"url": {
-							"raw": "{{url_base}}/cadernos",
+							"raw": "{{url_base}}/humores/:id",
 							"host": [
 								"{{url_base}}"
 							],
 							"path": [
-								"cadernos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Listar Cadernos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url_base}}/cadernos",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"cadernos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Ver Entradas do Caderno (Relacionamento)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url_base}}/cadernos/:id/entradas",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"cadernos",
-								":id",
-								"entradas"
+								"humores",
+								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "COLE_O_ID_DO_CADERNO_AQUI",
-									"description": "ID do caderno que você quer ver"
+									"value": "COLE_O_ID_AQUI"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Humor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/humores/:id",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"humores",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "COLE_O_ID_AQUI"
 								}
 							]
 						}
@@ -319,7 +453,7 @@
 	"variable": [
 		{
 			"key": "url_base",
-			"value": "https://projeto-aos-diario-pessoal.vercel.app/",
+			"value": "https://projeto-aos-diario-pessoal.vercel.app",
 			"type": "string"
 		},
 		{
