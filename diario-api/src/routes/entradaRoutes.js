@@ -7,6 +7,7 @@ router.use(authMiddleware);
 
 router.post('/', entradaController.criarEntrada);
 router.get('/', entradaController.listarEntradas);
+router.put('/:id', entradaController.atualizarEntrada);
 router.delete('/:id', entradaController.deletarEntrada);
 
-module.exports = router; 
+module.exports = router;
