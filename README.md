@@ -11,7 +11,7 @@ O sistema permite que usuários se cadastrem e façam login para criar e gerenci
 | Nome | RA |
 | :--- | :--- |
 | `Andreza Luíze Carrilho Silva` | `[00000850319]` |
-| `[Natan Soares]` | `[00000851787]` |
+| `Natan Soares` | `[00000851787]` |
 
 
 -----
