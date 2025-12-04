@@ -4,19 +4,6 @@ Este projeto é um back-end completo para um sistema de diário pessoal, desenvo
 
 O sistema permite que usuários se cadastrem e façam login para criar e gerenciar seus cadernos e entradas de diário. O foco principal do projeto é a **privacidade e segurança**, garantindo que um usuário **jamais** possa acessar, ver, editar ou deletar dados que pertençam a outro usuário.
 
-[](https://www.google.com/search?q=%5Bhttps://nodejs.org/%5D\(https://nodejs.org/\))
-[](https://expressjs.com/)
-[](https://www.postgresql.org/)
-[](https://vercel.com/)
-[](https://www.prisma.io/)
-
------
-
-## 🚀 Links do Projeto
-
-  * **API Publicada (Vercel):** `[COLOQUE AQUI O LINK DO SEU DEPLOY NO VERCEL]`
-  * **Vídeo de Demonstração (YouTube):** `[COLOQUE AQUI O LINK DO SEU VÍDEO NO YOUTUBE]`
-
 -----
 
 ## 👥 Equipe
@@ -24,7 +11,16 @@ O sistema permite que usuários se cadastrem e façam login para criar e gerenci
 | Nome | RA |
 | :--- | :--- |
 | `Andreza Luíze Carrilho Silva` | `[00000850319]` |
-| `[Nome Completo do Integrante 2]` | `[RA do Integrante 2]` |
+| `[Natan Soares]` | `[00000851787]` |
+
+
+-----
+
+## 🚀 Links do Projeto
+
+  * **API Publicada (Vercel):** `[https://projeto-aos-diario-pessoal.vercel.app/]`
+  * **Vídeo de Demonstração (YouTube):** `[https://youtu.be/bSKtVYOPPI8?si=yYlp3BKNpnWfW9Mo]`
+
 
 -----
 
@@ -65,8 +61,8 @@ Siga os passos abaixo para executar o projeto em seu ambiente de desenvolvimento
 1.  **Clone o repositório:**
 
     ```bash
-    git clone [LINK-DO-SEU-REPOSITORIO-GITHUB]
-    cd [NOME-DA-PASTA-DO-PROJETO]
+    git clone 
+    cd
     ```
 
 2.  **Instale as dependências:**
