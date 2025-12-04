@@ -1,28 +1,41 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-const bcrypt = require('bcryptjs'); // Certifique-se de ter: npm install bcryptjs
+const bcrypt = require('bcryptjs');
 
 async function main() {
-  // 1. Limpar o banco antes de popular (para não duplicar erros)
+  console.log('Iniciando o seed...');
+
+  // 1. Limpar o banco antes de popular
   await prisma.entrada.deleteMany();
   await prisma.caderno.deleteMany();
   await prisma.humor.deleteMany();
   await prisma.usuario.deleteMany();
 
-  // 2. Criar Humores (Tabela de consulta)
-  const feliz = await prisma.humor.create({ data: { descricao: 'Feliz' } });
-  const triste = await prisma.humor.create({ data: { descricao: 'Triste' } });
-  const ansioso = await prisma.humor.create({ data: { descricao: 'Ansioso' } });
-  
-  console.log('✅ Humores criados');
+  console.log(' Banco limpo!');
 
-  // 3. Criar 2 Usuários (Hash na senha é obrigatório!)
+  // 2. Criar Humores 
+
+  const feliz = await prisma.humor.create({ 
+    data: { nome: 'Feliz', emoji: '😊' } 
+  });
+  
+  const triste = await prisma.humor.create({ 
+    data: { nome: 'Triste', emoji: '😢' } 
+  });
+  
+  const ansioso = await prisma.humor.create({ 
+    data: { nome: 'Ansioso', emoji: '😰' } 
+  });
+  
+  console.log('Humores criados');
+
+  // 3. Criar 2 Usuários
   const senhaHash = await bcrypt.hash('123456', 10);
 
   const user1 = await prisma.usuario.create({
     data: {
       email: 'alice@email.com',
-      nome: 'Alice Silva', // Se tiver esse campo no seu schema
+      nome: 'Alice Silva',
       senha: senhaHash,
     },
   });
@@ -35,7 +48,7 @@ async function main() {
     },
   });
 
-  console.log('✅ Usuários criados (Alice e Bruno)');
+  console.log('Usuários criados: Alice e Bruno (Senha: 123456)');
 
   // 4. Criar 2 Cadernos para a Alice
   const caderno1 = await prisma.caderno.create({
@@ -52,19 +65,27 @@ async function main() {
     },
   });
 
-  // Criar 1 Caderno para o Bruno (só para teste de segurança)
+  // Criar 2 Cadernos para o Bruno
   await prisma.caderno.create({
     data: {
       titulo: 'Segredos do Bruno',
       usuarioId: user2.id,
     },
   });
+  
+  await prisma.caderno.create({
+    data: {
+      titulo: 'Receitas de Família',
+      usuarioId: user2.id,
+    },
+  });
 
-  console.log('✅ Cadernos criados');
+  console.log('Cadernos criados');
 
   // 5. Criar Entradas (Posts) nos cadernos da Alice
   await prisma.entrada.create({
     data: {
+      titulo: 'Chegada em Paris',
       conteudo: 'Hoje cheguei em Paris! A cidade é linda.',
       cadernoId: caderno1.id,
       usuarioId: user1.id,
@@ -74,15 +95,16 @@ async function main() {
 
   await prisma.entrada.create({
     data: {
-      conteudo: 'Perdi meu voo... estou preocupada.',
+      titulo: 'Problema no voo',
+      conteudo: 'Perdi meu voo de conexão... estou preocupada.',
       cadernoId: caderno1.id,
       usuarioId: user1.id,
       humorId: ansioso.id,
     },
   });
   
-  console.log('✅ Entradas criadas');
-  console.log('🌱 Banco de dados populado com sucesso!');
+  console.log('Entradas criadas');
+  console.log('Seed finalizado com sucesso!');
 }
 
 main()

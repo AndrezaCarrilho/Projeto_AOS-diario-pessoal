@@ -11,7 +11,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// --- AS TABELAS QUE FALTAVAM ---
+
 
 // 1. Entidade Usuario (para login)
 model Usuario {
@@ -40,7 +40,7 @@ model Caderno {
   @@map("cadernos")
 }
 
-// 3. Entidade Entrada (o diário)
+// 3. Entidade Entrada
 model Entrada {
   id        String    @id @default(uuid())
   titulo    String
@@ -59,7 +59,7 @@ model Entrada {
   @@map("entradas")
 }
 
-// 4. Entidade Humor (tabela de consulta)
+// 4. Entidade Humor
 model Humor {
   id    String    @id @default(uuid())
   nome  String    @unique 
