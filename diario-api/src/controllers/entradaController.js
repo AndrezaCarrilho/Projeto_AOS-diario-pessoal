@@ -30,14 +30,14 @@ exports.criarEntrada = async (req, res) => {
   }
 };
 
-// 2. LISTAR
+// 2 LISTAR
 exports.listarEntradas = async (req, res) => {
   try {
     const entradas = await prisma.entrada.findMany({
-      where: { usuarioId: req.usuarioId }, // FILTRO DE SEGURANÇA
+      where: { usuarioId: req.usuarioId },
       include: {
-        humor: true,   // Traz o emoji junto
-        caderno: true  // Traz o nome do caderno junto
+        humor: true, 
+        caderno: true  
       }
     });
     res.json(entradas);
